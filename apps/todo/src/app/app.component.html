@@ -1,8 +1,7 @@
-<div style="text-align: center;">
-  <h1>Welcome to todo!</h1>
-  <img
-    width="450"
-    src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png"
-  />
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<ngnest-header></ngnest-header>
+
+<ngnest-navbar></ngnest-navbar>
+
+<router-outlet class="flex-grow-1 flex-shrink-0 mb-auto"></router-outlet>
+
+<ngnest-footer class="flex-shrink-0 mt-4"></ngnest-footer>
