@@ -5,6 +5,7 @@ import { TodosRoutingModule } from './todos-routing.module';
 import { TodosComponent } from './todos/todos.component';
 import { TodoAddComponent } from './todo-add/todo-add.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
+import { TodoService } from "./todo.service";
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { TodoItemComponent } from './todo-item/todo-item.component';
   imports: [
     CommonModule,
     TodosRoutingModule,
-  ]
+  ],
+  providers: [TodoService]
 })
 export class TodosModule { }

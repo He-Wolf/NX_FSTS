@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from "../todo.service";
+import { Todo } from "../todo";
 
 @Component({
   selector: 'ngnest-todos',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
 
-  constructor() { }
+  todos: Todo[];
+
+  constructor(
+    private todoService : TodoService,
+  ) { }
 
   ngOnInit(): void {
+    this.getTodos();
   }
 
+  getTodos(): void {
+    this.todoService.getTodos()
+        .subscribe(todos => this.todos = todos);
+  }
 }

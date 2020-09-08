@@ -1,1 +1,8 @@
-<p>todos works!</p>
+<h2>My Todos:</h2>
+<ul>
+    <div *ngIf="todos">
+        <li *ngFor="let todo of todos">
+            <ngnest-todo-item [todo]="todo"></ngnest-todo-item>
+        </li>
+    </div>
+</ul>
