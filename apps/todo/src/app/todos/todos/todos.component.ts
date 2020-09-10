@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { TodoService } from "../todo.service";
-import { Todo } from "../todo";
+import { Todo } from "../models/todo";
+import { TodoCreate } from "../models/todo-create";
 
 @Component({
   selector: 'ngnest-todos',
@@ -10,6 +11,7 @@ import { Todo } from "../todo";
 export class TodosComponent implements OnInit {
 
   todos: Todo[];
+  nowEditedId: string;
 
   constructor(
     private todoService : TodoService,
@@ -19,8 +21,40 @@ export class TodosComponent implements OnInit {
     this.getTodos();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(this.todos)
+  }
+
   getTodos(): void {
     this.todoService.getTodos()
-        .subscribe(todos => this.todos = todos);
+      .subscribe(t => this.todos = <Todo[]>t);
+  }
+
+  SetManageId(id: string) {
+    this.nowEditedId = id;
+  }
+
+  GetItem(todo: Todo) {
+    let i: number = this.todos.findIndex(_todo => _todo.id == todo.id);
+    this.todoService.getTodo(todo.id)
+      .subscribe(t => this.todos[i] = <Todo>t);
+  }
+
+  PostItem(todo: TodoCreate) {
+    this.todoService.postTodo(todo)
+      .subscribe(t => this.todos.push(<Todo>t));
+  }
+
+  PutItem(todo: Todo) {
+    let i: number = this.todos.findIndex(_todo => _todo.id == todo.id);
+    this.todoService.putTodo(todo.id, todo)
+      .subscribe(t => this.todos[i] = <Todo>t);
+  }
+
+  DeleteItem(todo: Todo) {
+    this.todoService.deleteTodo(todo.id)
+      .subscribe(t => 
+        this.todos = this.todos.filter(_t => _t !== t)
+      );
   }
 }

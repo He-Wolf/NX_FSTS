@@ -1,8 +1,47 @@
-<h2>My Todos:</h2>
-<ul>
-    <div *ngIf="todos">
-        <li *ngFor="let todo of todos">
-            <ngnest-todo-item [todo]="todo"></ngnest-todo-item>
-        </li>
+<div *ngIf="todos">
+    <!-- <div class="row mx-2 mb-2 justify-content-md-center">
+        <div class="col"></div>
+        <div class="col-md-4">
+            <TodoAdd
+                nowEditedId="@nowEditedId"
+                OnManage="@SetManageId"
+                OnPost="@PostItem">
+            </TodoAdd>
+        </div>
+        <div class="col"></div>
+    </div> -->
+    <div class="row mx-2 mb-2 justify-content-md-center">
+        <div class="col"></div>
+        <div class="col-md-4">
+            <h5>TO DO</h5>
+            <ng-container *ngFor="let todo of todos">
+                <ng-container *ngIf="!todo.isDone">
+                    <ngnest-todo-item
+                        [todo]="todo"
+                        [nowEditedId]="nowEditedId"
+                        (OnManage)="SetManageId($event)"
+                        (OnGet)="GetItem($event)"
+                        (OnPut)="PutItem($event)"
+                        (OnDelete)="DeleteItem($event)">
+                    </ngnest-todo-item>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="col-md-4">
+            <h5>DONE</h5>
+            <ng-container *ngFor="let todo of todos">
+                <ng-container *ngIf="todo.isDone">
+                    <ngnest-todo-item
+                        [todo]="todo"
+                        [nowEditedId]="nowEditedId"
+                        (OnManage)="SetManageId($event)"
+                        (OnGet)="GetItem($event)"
+                        (OnPut)="PutItem($event)"
+                        (OnDelete)="DeleteItem($event)">
+                    </ngnest-todo-item>
+                </ng-container>
+            </ng-container>
+        </div>
+        <div class="col"></div>
     </div>
-</ul>
+</div>

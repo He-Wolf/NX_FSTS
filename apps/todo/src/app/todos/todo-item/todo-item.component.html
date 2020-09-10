@@ -1,4 +1,81 @@
-<b>{{todo.id}}</b>
-<p>{{todo.name}}</p>
-<p>{{todo.isDone}}</p>
-<p>{{todo.description}}</p>
+<div class="card">
+    <div class="card-body">
+        <form (ngSubmit)="onSubmit()" #todoForm="ngForm">
+            <div class="form-group row">
+                <label for="name" class="col-sm-3 col-form-label">Label:</label>
+                <div class="col-sm-9">
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        [className]="ifEdit?'form-control':'form-control-plaintext'"
+                        [attr.readonly] = "ifEdit?null:'readonly'"
+                        [(ngModel)]="todo.name"
+                        required
+                        maxlength="20"
+                        #name="ngModel">
+                    <div
+                        *ngIf="name.invalid && (name.dirty || name.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="name.errors.required">
+                            Name is required.
+                        </div>
+                        <div *ngIf="name.errors.maxlength">
+                            Name must be less than 20 characters long.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="desc" class="col-sm-3 col-form-label">Description:</label>
+                <div class="col-sm-9">
+                    <input
+                        type="text"
+                        id="desc"
+                        name="desc"
+                        [className]="ifEdit?'form-control':'form-control-plaintext'"
+                        [attr.readonly] = "ifEdit?null:'readonly'"
+                        [(ngModel)]="todo.description"
+                        required
+                        maxlength="50"
+                        #desc="ngModel">
+                    <div
+                        *ngIf="desc.invalid && (desc.dirty || desc.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="desc.errors.required">
+                            Description is required.
+                        </div>
+                        <div *ngIf="desc.errors.maxlength">
+                            Description must be less than 50 characters long.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-check">
+                <input
+                type="checkbox"
+                id="isDone"
+                name="isDone"
+                class="form-check-input"
+                [attr.disabled]="ifEdit?null:'disabled'"
+                [attr.checked]="todo.isDone?'checked':null"
+                [(ngModel)]="todo.isDone">
+                <label for="isDone" class="form-check-label">I have done it.</label>
+            </div>
+            <ng-container *ngIf="!ifEdit && !ifDelete">
+                <ng-container *ngIf="!todo.IsComplete">
+                    <button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button>
+                </ng-container>
+                <button type="button" class="btn btn-primary" (click)="onDelete()">Delete</button>
+            </ng-container>
+            <ng-container *ngIf="ifEdit">
+                <button type="submit" class="btn btn-primary">Apply</button>
+                <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+            </ng-container>
+            <ng-container *ngIf="ifDelete">
+                <button type="submit" class="btn btn-danger">Confirm</button>
+                <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+            </ng-container>
+        </form>
+    </div>
+</div>
