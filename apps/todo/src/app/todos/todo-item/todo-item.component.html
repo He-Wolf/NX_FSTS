@@ -63,7 +63,7 @@
                 <label for="isDone" class="form-check-label">I have done it.</label>
             </div>
             <ng-container *ngIf="!ifEdit && !ifDelete">
-                <ng-container *ngIf="!todo.IsComplete">
+                <ng-container *ngIf="!todo.isDone">
                     <button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button>
                 </ng-container>
                 <button type="button" class="btn btn-primary" (click)="onDelete()">Delete</button>
