@@ -19,22 +19,18 @@ export class TodoItemComponent implements OnInit {
   ifEdit: boolean;
   ifDelete: boolean;
   ifCancelable: boolean;
-  isDone: boolean;
+  _todo: Todo;
   
   constructor() { }
 
   ngOnInit(): void {
-    if(this.nowEditedId != this.todo.id){
       this.ifEdit = false;
       this.ifDelete = false;
       this.ifCancelable = false;
-      this.isDone = this.todo.isDone;
-    }
+      this._todo = {id: this.todo.id, name: this.todo.name, description: this.todo.description, isDone: this.todo.isDone};
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if(this.isDone == undefined)
-      this.isDone = this.todo.isDone;
     if(this.todo.id != this.nowEditedId && this.ifCancelable == true)
       this.onCancel();
   }
@@ -53,8 +49,10 @@ export class TodoItemComponent implements OnInit {
     this.ifEdit = false;
     this.ifDelete = false;
     this.ifCancelable = false;
-    this.isDone = this.todo.isDone;
     this.OnGet.emit(this.todo);
+    this._todo.name = this.todo.name;
+    this._todo.description = this.todo.description;
+    this._todo.isDone = this.todo.isDone;
   }
 
   onSubmit() {
@@ -62,7 +60,9 @@ export class TodoItemComponent implements OnInit {
     {
       this.ifEdit = false;
       this.ifCancelable = false;
-      this.todo.isDone = this.isDone;
+      this.todo.name = this._todo.name;
+      this.todo.description = this._todo.description;
+      this.todo.isDone = this._todo.isDone;
       this.OnPut.emit(this.todo);
     }
     else if (this.ifDelete)

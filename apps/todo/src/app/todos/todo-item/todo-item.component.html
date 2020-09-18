@@ -10,7 +10,7 @@
                         name="name"
                         [className]="ifEdit?'form-control':'form-control-plaintext'"
                         [attr.readonly] = "ifEdit?null:'readonly'"
-                        [(ngModel)]="todo.name"
+                        [(ngModel)]="_todo.name"
                         required
                         maxlength="20"
                         #name="ngModel">
@@ -35,7 +35,7 @@
                         name="desc"
                         [className]="ifEdit?'form-control':'form-control-plaintext'"
                         [attr.readonly] = "ifEdit?null:'readonly'"
-                        [(ngModel)]="todo.description"
+                        [(ngModel)]="_todo.description"
                         required
                         maxlength="50"
                         #desc="ngModel">
@@ -58,8 +58,8 @@
                 name="isDone"
                 class="form-check-input"
                 [attr.disabled]="ifEdit?null:'disabled'"
-                [attr.checked]="isDone?'checked':null"
-                [(ngModel)]="isDone">
+                [attr.checked]="_todo.isDone?'checked':null"
+                [(ngModel)]="_todo.isDone">
                 <label for="isDone" class="form-check-label">I have done it.</label>
             </div>
             <ng-container *ngIf="!ifEdit && !ifDelete">
