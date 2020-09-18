@@ -16,27 +16,24 @@ export class TodoItemComponent implements OnInit {
   @Output() OnPut  = new EventEmitter<Todo>();
   @Output() OnDelete  = new EventEmitter<Todo>();
 
-  ifEdit: boolean = false;
-  ifDelete: boolean = false;
-  ifCancelable: boolean = false;
+  ifEdit: boolean;
+  ifDelete: boolean;
+  ifCancelable: boolean;
   
   constructor() { }
 
   ngOnInit(): void {
+    if(this.nowEditedId != this.todo.id){
+      this.ifEdit = false;
+      this.ifDelete = false;
+      this.ifCancelable = false;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("onchange todo: ");
-    console.log(this.todo);
+    if(this.todo.id != this.nowEditedId && this.ifCancelable == true)
+      this.onCancel();
     
-    console.log("onchange nowEditedId: " + this.nowEditedId);
-    console.log("onchange ifEdit: " + this.ifEdit);
-    console.log("onchange ifDelete: " + this.ifDelete);
-    console.log("onchange ifCancelable: " + this.ifCancelable);
-    if(this.todo.id != this.nowEditedId && this.ifCancelable == true){
-            this.onCancel();
-            console.log("onchange cancel");
-    }
   }
 
   onEdit() {
@@ -53,6 +50,7 @@ export class TodoItemComponent implements OnInit {
     this.ifEdit = false;
     this.ifDelete = false;
     this.ifCancelable = false;
+    this.OnManage.emit(null);
     this.OnGet.emit(this.todo);
   }
 

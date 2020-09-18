@@ -21,10 +21,6 @@ export class TodosComponent implements OnInit {
     this.getTodos();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(this.todos)
-  }
-
   getTodos(): void {
     this.todoService.getTodos()
       .subscribe(t => this.todos = <Todo[]>t);
