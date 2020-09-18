@@ -49,8 +49,9 @@ export class TodosComponent implements OnInit {
 
   DeleteItem(todo: Todo) {
     this.todoService.deleteTodo(todo.id)
-      .subscribe(t => 
-        this.todos = this.todos.filter(_t => _t !== t)
+      .subscribe(t => {
+        this.todos = this.todos.filter(_t => _t !== t);
+        this.ngOnInit();}
       );
   }
 }
