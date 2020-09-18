@@ -58,8 +58,8 @@
                 name="isDone"
                 class="form-check-input"
                 [attr.disabled]="ifEdit?null:'disabled'"
-                [attr.checked]="todo.isDone?'checked':null"
-                [(ngModel)]="todo.isDone">
+                [attr.checked]="isDone?'checked':null"
+                [(ngModel)]="isDone">
                 <label for="isDone" class="form-check-label">I have done it.</label>
             </div>
             <ng-container *ngIf="!ifEdit && !ifDelete">

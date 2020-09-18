@@ -19,6 +19,7 @@ export class TodoItemComponent implements OnInit {
   ifEdit: boolean;
   ifDelete: boolean;
   ifCancelable: boolean;
+  isDone: boolean;
   
   constructor() { }
 
@@ -27,13 +28,15 @@ export class TodoItemComponent implements OnInit {
       this.ifEdit = false;
       this.ifDelete = false;
       this.ifCancelable = false;
+      this.isDone = this.todo.isDone;
     }
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if(this.isDone == undefined)
+      this.isDone = this.todo.isDone;
     if(this.todo.id != this.nowEditedId && this.ifCancelable == true)
       this.onCancel();
-    
   }
 
   onEdit() {
@@ -50,7 +53,7 @@ export class TodoItemComponent implements OnInit {
     this.ifEdit = false;
     this.ifDelete = false;
     this.ifCancelable = false;
-    this.OnManage.emit(null);
+    this.isDone = this.todo.isDone;
     this.OnGet.emit(this.todo);
   }
 
@@ -59,6 +62,7 @@ export class TodoItemComponent implements OnInit {
     {
       this.ifEdit = false;
       this.ifCancelable = false;
+      this.todo.isDone = this.isDone;
       this.OnPut.emit(this.todo);
     }
     else if (this.ifDelete)
