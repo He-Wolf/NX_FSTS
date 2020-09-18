@@ -1,15 +1,15 @@
 <div *ngIf="todos">
-    <!-- <div class="row mx-2 mb-2 justify-content-md-center">
+    <div class="row mx-2 mb-2 justify-content-md-center">
         <div class="col"></div>
         <div class="col-md-4">
-            <TodoAdd
-                nowEditedId="@nowEditedId"
-                OnManage="@SetManageId"
-                OnPost="@PostItem">
-            </TodoAdd>
+            <ngnest-todo-add
+                [nowEditedId]="nowEditedId"
+                (OnManage)="SetManageId($event)"
+                (OnPost)="PostItem($event)">
+            </ngnest-todo-add>
         </div>
         <div class="col"></div>
-    </div> -->
+    </div>
     <div class="row mx-2 mb-2 justify-content-md-center">
         <div class="col"></div>
         <div class="col-md-4">

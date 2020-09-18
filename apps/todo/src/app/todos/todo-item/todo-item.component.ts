@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { Todo } from '../models/todo';
 
 @Component({

@@ -1,1 +1,62 @@
-<p>todo-add works!</p>
+<div class="card">
+    <div class="card-body">
+        <ng-container *ngIf="!ifAddItem; else noAddItem">
+            <h5>If You want to add a new TODO item, press button Add Item.</h5>
+            <button type="button" class="btn btn-success" (click)="AddItem()">Add Item</button>
+        </ng-container>
+        <ng-template #noAddItem>
+            <form (ngSubmit)="onAdd()" #addTodoForm="ngForm">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Label:</label>
+                    <div class="col-sm-9">
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-control"
+                            [(ngModel)]="todo.name"
+                            required
+                            maxlength="20"
+                            #name="ngModel">
+                            <div
+                                *ngIf="name.invalid && (name.dirty || name.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="name.errors.required">
+                                    Name is required.
+                                </div>
+                                <div *ngIf="name.errors.maxlength">
+                                    Name must be less than 20 characters long.
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="desc" class="col-sm-3 col-form-label">Description:</label>
+                    <div class="col-sm-9">
+                        <input
+                            type="text"
+                            id="desc"
+                            name="desc"
+                            class="form-control"
+                            [(ngModel)]="todo.description"
+                            required
+                            maxlength="20"
+                            #desc="ngModel">
+                            <div
+                                *ngIf="desc.invalid && (desc.dirty || desc.touched)"
+                                class="alert alert-danger">
+                                <div *ngIf="desc.errors.required">
+                                    Description is required.
+                                </div>
+                                <div *ngIf="desc.errors.maxlength">
+                                    Description must be less than 50 characters long.
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-secondary" (click)="Cancel()">Cancel</button>
+            </form>
+        </ng-template>
+    </div>
+</div>
