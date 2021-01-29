@@ -5,3 +5,7 @@ full-stack Typescript web application with Angular frontend and NestJS backend u
 - npm install
 - ng serve api
 - ng serve todo
+
+- ng build --prod api
+- ng build --prod todo
+- node main.js
