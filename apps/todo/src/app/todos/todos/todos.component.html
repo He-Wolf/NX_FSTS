@@ -13,7 +13,7 @@
     <div class="row mx-2 mb-2 justify-content-md-center">
         <div class="col"></div>
         <div class="col-md-4">
-            <h5>TO DO</h5>
+            <h5 class="text-center">TO DO</h5>
             <ng-container *ngFor="let todo of todos">
                 <ng-container *ngIf="!todo.isDone">
                     <ngnest-todo-item
@@ -28,7 +28,7 @@
             </ng-container>
         </div>
         <div class="col-md-4">
-            <h5>DONE</h5>
+            <h5 class="text-center">DONE</h5>
             <ng-container *ngFor="let todo of todos">
                 <ng-container *ngIf="todo.isDone">
                     <ngnest-todo-item

@@ -64,17 +64,17 @@
             </div>
             <ng-container *ngIf="!ifEdit && !ifDelete">
                 <ng-container *ngIf="!todo.isDone">
-                    <button type="button" class="btn btn-primary" (click)="onEdit()">Edit</button>
+                    <button type="button" class="btn btn-primary m-1" (click)="onEdit()">Edit</button>
                 </ng-container>
-                <button type="button" class="btn btn-primary" (click)="onDelete()">Delete</button>
+                <button type="button" class="btn btn-primary m-1" (click)="onDelete()">Delete</button>
             </ng-container>
             <ng-container *ngIf="ifEdit">
-                <button type="submit" class="btn btn-primary">Apply</button>
-                <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+                <button type="submit" class="btn btn-primary m-1">Apply</button>
+                <button type="button" class="btn btn-secondary m-1" (click)="onCancel()">Cancel</button>
             </ng-container>
             <ng-container *ngIf="ifDelete">
-                <button type="submit" class="btn btn-danger">Confirm</button>
-                <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+                <button type="submit" class="btn btn-danger m-1">Confirm</button>
+                <button type="button" class="btn btn-secondary m-1" (click)="onCancel()">Cancel</button>
             </ng-container>
         </form>
     </div>
