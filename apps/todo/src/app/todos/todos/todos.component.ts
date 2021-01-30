@@ -6,7 +6,8 @@ import { TodoCreate } from "../models/todo-create";
 @Component({
   selector: 'ngnest-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.css']
+  styleUrls: ['./todos.component.css'],
+  host: {'class': 'flex-grow-1 flex-shrink-0 mb-auto'}
 })
 export class TodosComponent implements OnInit {
 
